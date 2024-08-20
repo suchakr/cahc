@@ -902,7 +902,7 @@ def plot_adityachaara_seasons() :
   # print(VGJSeasons)
 
 if __name__ == '__main__' :
-  for yr in range(-2500, 401, 100) :
+  for yr in range(-2500, 401, 100*5) :
     plot_vgj_seasons(years=yr, equal_naks=not False, title="", tick_mode='day', savefig=True )
     plot_vgj_seasons(years=yr, equal_naks=not False, title="", tick_mode='deg', savefig=True )
 
@@ -1069,8 +1069,8 @@ def plot_mbe2_83(n_df, n_df2 = None, only_abhyankar_27=False) :
   if n_df2 is not None:
     ax.annotate("27 nakṣatra Abhyankar".upper(), (-1250, 18/2), fontsize=25, color='black')
     ax.plot([-600+150,-500+150 ] , [18.5/2,18.5/2], linestyle=':', linewidth=3, color='black')
-  ax.annotate("ṛtusvabhāva".upper(), (0, 25/2), fontsize=30, color='red')
-  ax.annotate("ādityacāra".upper(), (-2450, 25/2), fontsize=30, color='green')
+  ax.annotate("ṛtusvabhāva".upper(), (0, 25/3), fontsize=30, color='red')
+  ax.annotate("ādityacāra".upper(), (-2450, 11+0*25/3), fontsize=30, color='green')
   ax.annotate("year".upper(), (-2453, .2), fontsize=25, color='black')
   ax.annotate("position error".upper(), (-2475, 3), fontsize=25, color='black', rotation=90)
   # for x1 in range( -2500, 499, 100) :

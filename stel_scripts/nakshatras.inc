@@ -250,13 +250,14 @@ var $WRITE_X = 100
 var $WRITE_Y = 80
 function hexof(d) { return '01234567890ABCDEF'[d%16] }
 function cls() { LabelMgr.deleteAllLabels(); $WRITE_Y=80}
-function writes(t,color, size) { // write to screen
+function writes(t,color, size,wait) { // write to screen
   if (!size) size=10
   if (!color) color= '#CCC' + hexof($WRITE_Y) + hexof($WRITE_Y) + hexof($WRITE_Y) //+ hexof($WRITE_X) + 'FF' 
   var id = LabelMgr.labelScreen(t, $WRITE_X, $WRITE_Y, false, size , color);
   LabelMgr.setLabelShow(id, true);
   $WRITE_Y += (size+2) 
-  core.wait(2)
+  if (!wait)
+  core.wait(wait)
 }
 var $TITLE_X = 400
 var $TITLE_Y = 200 
@@ -272,6 +273,19 @@ function titles(t,color, size, wait) { // title to screen
   core.wait(wait)
   return id
 }
+
+function writeat(x, y, txt, color, size, wait) {
+  savex = $WRITE_X;
+  savey = $WRITE_Y;
+  $WRITE_X = x;
+  $WRITE_Y = y;
+  writes(txt, color, size);
+  if ( !wait ) wait = .1;  W(wait);
+  $WRITE_X = savex;
+  $WRITE_Y = savey;
+
+}
+
 var id = LabelMgr.labelScreen("Tour of 27 Nakshatras", 500, 500, false, 30)
 
 function TimeKeeper() {

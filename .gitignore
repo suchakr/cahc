@@ -70,3 +70,7 @@ learn/python/llm/.env
 **/*dSYM/*
 **/geckodriver.log
 jyotisha/images/naks-366/*
+presentations/**/media/*
+presentations/2024-03-17-mythic/*gif
+presentations/2024-03-17-mythic/*jpg
+presentations/2024-03-17-mythic/*mp4

@@ -71,30 +71,31 @@ style : |
 
 <style scoped>
     /* place text at the bottom of the slide */
-    img:nth-child(1) { 
-        margin-top:-25px; margin-left:0px; 
-        scale: 0.8;
-     }
-        
-    img:nth-child(3) { 
-        /* position: absolute; */ margin-top: 5px; margin-left: 0px;
-        transform: scaleX(1.2) scaleY(.85) translate(24%, -15%);  
-        ; z-index: -1;  border: 0px solid black; }
-    table { font-size: 14px;  width: 100%; text-align: center; }
+
+    table +  p img {
+        margin-top: -10px;  margin-left: -10px;
+        transform: scaleX(1.025) scaleY(1);
+ 
+    }
+
+    table + p  + p img {
+        margin-left:-250px; margin-top: -250px; margin-bottom: -230px; 
+        transform: scaleX(.65) scaleY(.35);
+        filter: invert(100%);
+    }
+
+    table { font-size: 14px;  width: 100%; text-align: center; margin-left:-20px}
     table:nth-child(2) th { display: none; border: 0px }
     table:nth-child(2)  { margin-bottom: -5px; }
     em { color: maroon; text-decoration: line-through; text-decoration-style: double; text-decoration-color: rgb(128,0,0,.6);}
 
     h2 { margin-top: -70px; margin-bottom: -10px;  }
-    
     /* place text at the bottom of the slide */
 </style>
 
 
-## Observing the Sun's rhythmns
+## [Observing the Sun's rhythmns](https://cahc.jainuniversity.ac.in/assets/talks/2024-03-17-mythic/00_sun_rise_swings_with_naks.mp4)
 
-<!-- ![bg fit width 100%](https://cahc.jainuniversity.ac.in/assets/talks/2023-12-05-iks-cahc/maghaadi/sun-moon-season-precession-dial.jpg)
-![bg fit width 90%](https://cahc.jainuniversity.ac.in/assets/talks/bihs/sun-transit/sun-transit-nakshatra-table.png) -->
 
 ||
 |--|
@@ -109,23 +110,29 @@ Mid-Spring/Autumn| **exact** east| **exact** west|
 Start-Winter| **south**-eastern horizon|  **south**-western horizon|
 
 ![](https://cahc.jainuniversity.ac.in/assets/talks/2024-03-17-mythic/00_sun-rise-swings.jpg)
-![](https://cahc.jainuniversity.ac.in/assets/talks/2024-03-17-mythic/00_sun-path.jpg)
 
+![](https://cahc.jainuniversity.ac.in/assets/talks/2024-03-17-mythic/00_sun_rise_swings_with_naks.gif)
 
 
 ---
 
 <style scoped>
     {
-        transform:  scale(1) rotate(0deg) translate(0%, 0%);
+        /* transform:  scale(1) rotate(0deg) translate(0%, 0%); */
         border: 10px solid gray; border-radius: 10px;
     }
-    li { font-size: 20px;  margin-left: -20px; }
+    li { font-size: 18px;  margin-left: -80px; }
+    img:nth-child(1) { 
+        margin-top:-60px; margin-left:-140px;  margin-bottom: -60px;
+        scale: 0.7;
+     }
+     h2 { margin-top: -50px; margin-left: -50px; }
 </style>
 ![bg fit right:60% ](https://cahc.jainuniversity.ac.in/assets/talks/2024-03-17-mythic/00_sun-path-movie.gif)
 ## [Annual Sunpath ](https://cahc.jainuniversity.ac.in/assets/talks/2024-03-17-mythic/00_sun-path-movie.mp4)
+![img](https://cahc.jainuniversity.ac.in/assets/talks/2024-03-17-mythic/00_sun-path.jpg)
+
 - Video of ~2 minutes shows
-- Sun's Annual Path by sampling
 - Sun's daily path for few evenly spaced days through the year
 - The contrast between the summer and winter paths can be seen
 - The contrast between the Bangalore and Kurukshetra paths can be seen
@@ -137,7 +144,7 @@ Start-Winter| **south**-eastern horizon|  **south**-western horizon|
         transform:  scale(1) rotate(0deg) translate(0%, 0%);
         border: 10px solid gray; border-radius: 10px;
     }
-    li { font-size: 20px;  margin-left: -20px; }
+    li { font-size: 20px;  margin-left: -30px; }
 </style>
 
 ![bg fit right:60% ](https://cahc.jainuniversity.ac.in/assets/talks/2024-03-17-mythic/01_sun-transit-basics-movie.gif)

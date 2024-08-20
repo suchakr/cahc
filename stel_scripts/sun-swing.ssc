@@ -1,0 +1,30 @@
+// script for the bihs mythic sun transit talk
+include ("nakshatras.inc");
+
+DEC_21_2024 = 2460665 //.54819;
+cls()
+
+function writeat(x, y, txt, color, size, wait) {
+    savex = $WRITE_X;
+    savey = $WRITE_Y;
+    $WRITE_X = x;
+    $WRITE_Y = y;
+    writes(txt, color, size);
+    if ( !wait ) wait = .1;  W(wait);
+    $WRITE_X = savex;
+    $WRITE_Y = savey;
+
+}
+
+for ( d = -3 ; d<=366+90; d++ ) {
+    // JD(DEC_21_2024 + d)
+    sun = getOI("sun")
+    sr = sun["rise-dhr"]
+    JD(DEC_21_2024 + d + sr/24 + 6.75/24)
+    // ddump([sr, JD()]);
+    W(.1)
+    if ( (d==0) || (d==91) || (d==182) || (d==273) || (d==365) ) {
+        writeat(1050 - (1050-400)*(d<=183?d:366-d)/183, 450 + ( d>183?100:0), d+1, "", 30)
+        W(5)
+    }
+}
