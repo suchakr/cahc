@@ -1,0 +1,138 @@
+include("nakshatras.inc");
+include("moon_set_events--1300.inc");
+event_jds = MOON_SET_JDS
+cls()
+
+function screenshot(dir, fn) {
+    var filename = fn || '000-zap0';
+    say(filename)
+    core.screenshot(
+        filename,
+        false ,// invert
+        "/Users/sunder/projects/cahc/cahc-utils/stel_scripts/moon-shranga~/-1300" +  (dir ? "/"+dir : ''), // directory
+        true,// overwrite
+        "jpg" // format
+    )
+}
+
+// jds = [  // shukla pratitpaada jds - from astropy
+//  2460649.069800596, 2460678.0712679503, 2460708.116630108, 2460737.114821804, 2460766.1145674177,
+//  2460796.1657751044, 2460825.155716814, 2460855.1581806038, 2460884.1168364924, 2460914.090069768,
+//  2460943.0463195904, 2460944.067870526, 2460973.035398037, 2461003.051768954, 2461033.0876805815,
+//  2461062.083482495, 2461092.1215137457, 2461121.1210210226, 2461150.124015218, 2461180.1692119003,
+//  2461209.1489097397, 2461238.1156184142, 2461268.0958363507, 2461297.052766303, 2461298.074940365,
+//  2461327.0398185877, 2461357.049089196, 2461387.0766999708, 2461417.1061673416, 2461446.0963043636,
+//  2461476.130671492, 2461505.130616364, 2461564.1589987343, 2461593.1300393566, 2461622.092855929,
+//  2461652.0765926936, 2461681.0411686376, 2461711.04870883
+// ]
+
+
+core.setObserverLocation(  // New Delhi
+    77.2090, // longitude
+    28.6139, // latitude
+    0 // elevation
+)
+W(5);
+
+// iterate over the keys and values of the event_jds object
+for ( key in event_jds) {
+    if (key == "shukla_pratipada") { continue }
+    value = event_jds[key]
+    for (i = 0; i < value.length; i+=1) {
+        JD(value[i]-.75/24)
+        moon = getOI("Moon") ; 
+        illu = moon['illumination']
+        elong = moon['elong']
+        $TITLE_X = 200; $TITLE_Y = 100-30;
+        titles(key); // $TITLE_Y += 5;
+        titles([ DT() , R2(value[i]) , R2(illu)+'%', R2(elong)+'°'  ].join(" ~ "))
+        moon = getOI("Moon") ; W(.5)    
+        //say("JD=" + value[i] + "  " + moon['rise'] + "  " + moon['set'] + " " + moon['illumination'])
+        //screenshot("moon-cusp-", i+100); W(1)
+        ssname = ((i+100+'').match(/.(..)/)[1]);
+        titles(ssname)
+        screenshot(key, ssname);
+        screenshot()
+        cls()
+    }
+}
+
+// for (i = 0; i < jds.length; i+=1) {
+//     JD(jds[i])
+//     moon = getOI("Moon") ; 
+//     illu = moon['illumination']
+//     $TITLE_X = 200; $TITLE_Y = 100;
+//     titles([ DT() , R2( jds[i]) , R2(illu)+'%'  ].join(" ~ "))
+//     moon = getOI("Moon") ; W(2)    
+//     //say("JD=" + jds[i] + "  " + moon['rise'] + "  " + moon['set'] + " " + moon['illumination'])
+//     //screenshot("moon-cusp-", i+100); W(1)
+//     cls()
+// }
+
+
+
+// {
+// "above-horizon": true,
+// "airmass": -1,
+// "albedo": 0.11999999731779099,
+// "altitude": 11.318171501159666,
+// "altitude-geometric": 11.238417444937511,
+// "appSidTm": "11h06m55.8s",
+// "azimuth": 123.94383219455348,
+// "azimuth-geometric": 123.94383219455348,
+// "colongitude": 90.02547255754479,
+// "dec": -22.78558718392961,
+// "decJ2000": -22.690824877446193,
+// "distance": 0.0026848588665768355,
+// "elat": -4.5840997579674445,
+// "elatJ2000": -4.579284036748003,
+// "elong": 232.36436948085554,
+// "elongJ2000": 232.01313583466765,
+// "elongation": 1.7284799040603938,
+// "elongation-deg": "+99.0346°",
+// "elongation-dms": "+99°02'05\"",
+// "found": true,
+// "glat": 29.532153934996103,
+// "glong": 340.8941596956135,
+// "heliocentric-velocity": "[-0.00815409, -0.0154603, -2.8292e-05]",
+// "heliocentric-velocity-kms": "30.26395",
+// "hourAngle-dd": 298.04828938680464,
+// "hourAngle-hms": "19h52m11.6s",
+// "iauConstellation": "Lib",
+// "illumination": 57.98388671875,
+// "libration_b": 5.486300235280377,
+// "libration_l": -3.752175189306952,
+// "localized-name": "Moon",
+// "meanSidTm": "11h06m55.8s",
+// "name": "Moon",
+// "pa_axis": 14.537968974329768,
+// "parallacticAngle": -52.13527106681421,
+// "penumbral-eclipse-magnitude": 0,
+// "phase": 0.5798388719558716,
+// "phase-angle": 1.4104321724684448,
+// "phase-angle-deg": "+80.8118°",
+// "phase-angle-dms": "+80°48'43\"",
+// "ra": -131.315622985418,
+// "raJ2000": -131.6812567569024,
+// "rise": "0h01m",
+// "rise-dhr": 0.01611111111111111,
+// "scale": 20,
+// "set": "11h16m",
+// "set-dhr": 11.270555555555557,
+// "sglat": 23.542521326811755,
+// "sglong": 150.48196263055763,
+// "size": 0.17259688143869029,
+// "size-dd": 9.889072863556809,
+// "size-deg": "+9.88907°",
+// "size-dms": "+9°53'20.66\"",
+// "subsolar_b": -0.713792343244742,
+// "subsolar_l": -83.62147365905446,
+// "transit": "5h41m",
+// "transit-dhr": 5.6775,
+// "type": "moon",
+// "umbral-eclipse-magnitude": 0,
+// "velocity": "[0.000446021, -0.000337301, -2.91942e-05]",
+// "velocity-kms": "0.96955",
+// "vmag": -10.469693183898926,
+// "vmage": -10.469693183898926
+// }
