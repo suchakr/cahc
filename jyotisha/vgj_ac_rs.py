@@ -901,7 +901,7 @@ def plot_adityachaara_seasons() :
 
   # print(VGJSeasons)
 
-if __name__ == '__main__' :
+if __name__ == '__mainx__' :
   for yr in range(-2500, 401, 100*5) :
     plot_vgj_seasons(years=yr, equal_naks=not False, title="", tick_mode='day', savefig=True )
     plot_vgj_seasons(years=yr, equal_naks=not False, title="", tick_mode='deg', savefig=True )
@@ -945,6 +945,7 @@ def prev_plot_mbe2_83() :
   n83_mbe = n83_mbe[['N83_MBE_BHA_350']]
       
   ax = n83_mbe.plot.line(figsize=(25,10), grid=True, style=['-.'], linewidth=2)
+  # ax = n83_mbe.plot.line(figsize=(20,10), grid=True, style=['-.'], linewidth=2)
   n27_mbe = n27Feb24.groupby(by=['year']).agg( { 
       'err_lon_bounds_eq' : np.mean,
       'err_lon_bounds_eq1' : np.mean,
@@ -987,7 +988,9 @@ def plot_mbe2_83(n_df, n_df2 = None, only_abhyankar_27=False) :
   ylim = 35 - 20
   #ax = n83_mbe.plot.line(figsize=(25,10), grid=True, style=['--', '--'], linewidth=2)
   #See if you can terminate the Green curves at -250 and start the red at -1500
-  ax = n83_mbe[(n83_mbe.N83_MBE_BHA_350 <=ylim) &  (n83_mbe.index  <= -250) ][['N83_MBE_BHA_350']].plot.line(
+  fig, ax = plt.subplots(figsize=(25, 10), facecolor='white')
+  ax.set_facecolor('white')
+  ax = n83_mbe[(n83_mbe.N83_MBE_BHA_350 <=ylim) &  (n83_mbe.index  <= -250) ][['N83_MBE_BHA_350']].plot.line( ax=ax,
     figsize=(25,10), grid=True, style=['--', '--'], linewidth=2 if not only_abhyankar_27 else 0, color='green')
   n83_mbe[(n83_mbe.N83_MBE_BHA_0 <=ylim) & (n83_mbe.index  >= -1500)][['N83_MBE_BHA_0']].plot.line(
     style=['--', '--'], linewidth=2 if not only_abhyankar_27 else 0, ax=ax, color='red')
@@ -1061,7 +1064,7 @@ def plot_mbe2_83(n_df, n_df2 = None, only_abhyankar_27=False) :
     ax.plot([-1000+100,-850+100 ] , [24.5/2,24.5/2], linestyle='--', linewidth=3, color='black')
     ax.annotate(f"27 nakṣatra".upper(), (-1250, 22/2), fontsize=25, color='black')
     ax.plot([-900+100,-750+100 ] , [22.5/2,22.5/2], linestyle='-' if not only_abhyankar_27 else ':' , linewidth=3, color='black')
-    ax.annotate("9 seasonal nakṣatra".upper(), (-1250, 20/2), fontsize=25, color='black')
+    ax.annotate(" 9 seasonal nakṣatra".upper(), (-1250, 20/2), fontsize=25, color='black')
     ax.plot([-700+150,-600+150 ] , [20.5/2,20.5/2], linestyle='-.', linewidth=3, color='black')
   else :
     ax.annotate("27 nakṣatra Abhyankar".upper(), (-1250, 18/2), fontsize=25, color='black')
@@ -1084,6 +1087,11 @@ def plot_mbe2_83(n_df, n_df2 = None, only_abhyankar_27=False) :
   ax.set_ylim(ymin=0, ymax=30-15)
   ax.set_xlim(xmin=-2500, xmax=500)
 
+  # save the figure as a png with 300 dpi and tight bounding box
+  plt.savefig(f"./images/ms-book/pg21-ac-rs-epoch.png", dpi=300, bbox_inches='tight')
+
+# init_globals()
+# plot_mbe2_83(n27Feb24, n27Feb24_abhyankar)
 # plot_mbe2_83(n27Feb24)
 # plot_mbe2_83(n27Feb24)
 # plot_mbe2_83(n27Feb24, n27Feb24_abhyankar, only_abhyankar_27=False)

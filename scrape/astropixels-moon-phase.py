@@ -49,7 +49,7 @@ def get_scrape_astropixels_moon_phases() :
         print(f"File {SCRAPED_MOON_PHASES} already exists")
 
     with open(SCRAPED_MOON_PHASES, 'r') as fh:
-        lines = [ re.sub("\n","",x) for x in fh.readlines() if len(x.strip()) > 1 ] 
+        lines = [ re.sub("\n","",x) for x in fh.readlines() if len(x.strip()) > 1 ]
 
     return lines
 
